@@ -4,41 +4,22 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/LibraryV2/mai
 -- Services
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local VirtualUser = game:GetService("VirtualUser")
 local localPlayer = Players.LocalPlayer
 
 -- Variables
 local autoClick = false
 local selectedMob = ""
 local MobList = {}
-local autoEgg1 = false  -- Adiciona uma variável para rastrear o estado do Auto Egg
-local autoEgg2 = false
-local autoEgg3 = false
-local autoEgg4 = false
-local autoEgg5 = false
-local autoEgg6 = false
-local autoEgg7 = false
-local autoEgg8 = false
-local autoEgg9 = false
-local autoEgg10 = false
-local autoEgg11 = false
-local autoEgg12 = false
-local autoEgg13 = false
-local autoEgg14 = false
-local autoEgg15 = false
-local autoEgg16 = false
-local autoEgg17 = false
-local autoEgg18 = false
-local autoEgg19 = false
-local autoEgg20 = false
-local autoEgg21 = false
 local autoEgg22 = false
 local autoEgg23 = false
 local autoEgg24 = false
+local autoMobs = false
 
 -- Functions
 local function List()
     MobList = {}
-    for _, mob in ipairs(game.workspace.Live.NPCs.Client:GetChildren()) do 
+    for _, mob in ipairs(game.Workspace.Live.NPCs.Client:GetChildren()) do 
         if mob.Name ~= "" then
             table.insert(MobList, mob.Name)
         end
@@ -57,230 +38,6 @@ local function Click()
             end
         end
     end)
-end
-
-local function Egg()
-while autoEgg1 do
-wait()
-local args = {
-    [1] = {
-        ["eggName"] = "Egg 1",
-        ["auto"] = false,
-        ["amount"] = 2
-    }
-}
-
-game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-end
-end
-
-local function Egg2()
-while autoEgg2 do
-wait()
-local args = {
-    [1] = {
-        ["eggName"] = "Egg 2",
-        ["auto"] = false,
-        ["amount"] = 2
-    }
-}
-
-game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-end
-end
-
-local function Egg3()
-while autoEgg3 do
-wait()
-local args = {
-    [1] = {
-        ["eggName"] = "Egg 3",
-        ["auto"] = false,
-        ["amount"] = 2
-    }
-}
-
-game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-end
-end
-
-local function Egg4()
-while autoEgg4 do
-wait()
-local args = {
-    [1] = {
-        ["eggName"] = "Egg 4",
-        ["auto"] = false,
-        ["amount"] = 2
-    }
-}
-
-game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-end
-end
-
-local function Egg5()
-while autoEgg5 do
-wait()
-local args = {
-    [1] = {
-        ["eggName"] = "Egg 5",
-        ["auto"] = false,
-        ["amount"] = 2
-    }
-}
-
-game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-end
-end
-
-
-local function Egg6()
-while autoEgg6 do 
-wait()
-local args = {
-    [1] = {
-        ["eggName"] = "Egg 6",
-        ["auto"] = false,
-        ["amount"] = 2
-    }
-}
-
-game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-end
-end
-
-
-local function Egg8()
-while autoEgg7 do
-wait()
-local args = {
-    [1] = {
-        ["eggName"] = "Egg 7",
-        ["auto"] = false,
-        ["amount"] = 2
-    }
-}
-
-game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-end
-end
-
-local function Egg8()
-while autoEgg8 do
-wait()
-local args = {
-    [1] = {
-        ["eggName"] = "Egg 8",
-        ["auto"] = false,
-        ["amount"] = 2
-    }
-}
-
-game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-end
-end
-
-local function Egg9()
-while autoEgg9 do
-wait()
-local args = {
-    [1] = {
-        ["eggName"] = "Egg 9",
-        ["auto"] = false,
-        ["amount"] = 2
-    }
-}
-
-game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-end
-end
-
-local function Egg10()
-while autoEgg10 do
-wait()
-local args = {
-    [1] = {
-        ["eggName"] = "Egg 10",
-        ["auto"] = false,
-        ["amount"] = 2
-    }
-}
-
-game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-end
-end
-
--- Funções para comprar automaticamente os ovos do Egg17 ao Egg24
-
-local function Egg17()
-    while autoEgg17 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 17",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
-end
-
-local function Egg18()
-    while autoEgg18 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 18",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
-end
-
-local function Egg19()
-    while autoEgg19 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 19",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
-end
-
-local function Egg20()
-    while autoEgg20 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 20",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
-end
-
-local function Egg21()
-    while autoEgg21 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 21",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
 end
 
 local function Egg22()
@@ -325,10 +82,29 @@ local function Egg24()
     end
 end
 
-
--- Toggle para ativar/desativar a compra do ovo 1
-
-
+local function AllMobs()
+    while autoMobs do
+        task.wait()
+        local Mobs = game.Workspace.Live.NPCs.Client:GetChildren()
+        if Mobs then
+            for _, mob in ipairs(Mobs) do
+                if mob:FindFirstChild("Humanoid") and mob.Humanoid.Health > 0 then
+                    local character = localPlayer.Character
+                    if character and character:FindFirstChild("HumanoidRootPart") then
+                        local humanoidRootPart = character.HumanoidRootPart
+                        humanoidRootPart.CFrame = mob.HumanoidRootPart.CFrame + Vector3.new(0, 0, 4)
+                        VirtualUser:Button1Down(Vector2.new(1000, 1000), workspace.CurrentCamera.CFrame)
+                        task.wait(0.1)
+                        VirtualUser:Button1Up(Vector2.new(1000, 1000), workspace.CurrentCamera.CFrame)
+                        ReplicatedStorage.Packages.Knit.Services.ClickService.RF.Click:InvokeServer()
+                    else
+                        warn("Local player character or HumanoidRootPart not found.")
+                    end
+                end
+            end
+        end
+    end
+end
 
 -- GUI
 MakeWindow({
@@ -364,412 +140,13 @@ local Main = MakeTab({Name = "Main"})
 local Egg = MakeTab({Name = "Eggs From All Worlds "})
 local section01 = AddSection(Main, {"By Dev | Script | Tester"})
 
-local ToggleAutoEgg1 = AddToggle(Egg, {
-    Name = "Auto Egg 1",
-    Default = false,
-    Callback = function(value)
-        autoEgg1 = value
-        if value then
-            Egg1() -- Inicia a função de compra do ovo 1 quando o toggle é ativado
-            print("Auto Egg 1 enabled")
-        else
-            print("Auto Egg 1 disabled")
-        end
-    end
-})
-
--- Toggle para ativar/desativar a compra do ovo 2
-local ToggleAutoEgg2 = AddToggle(Egg, {
-    Name = "Auto Egg 2",
-    Default = false,
-    Callback = function(value)
-        autoEgg2 = value
-        if value then
-            Egg2() -- Inicia a função de compra do ovo 2 quando o toggle é ativado
-            print("Auto Egg 2 enabled")
-        else
-            print("Auto Egg 2 disabled")
-        end
-    end
-})
-
--- Toggle para ativar/desativar a compra do ovo 3
-local ToggleAutoEgg3 = AddToggle(Egg, {
-    Name = "Auto Egg 3",
-    Default = false,
-    Callback = function(value)
-        autoEgg3 = value
-        if value then
-            Egg3() -- Inicia a função de compra do ovo 3 quando o toggle é ativado
-            print("Auto Egg 3 enabled")
-        else
-            print("Auto Egg 3 disabled")
-        end
-    end
-})
-
--- Toggle para ativar/desativar a compra do ovo 4
-local ToggleAutoEgg4 = AddToggle(Egg, {
-    Name = "Auto Egg 4",
-    Default = false,
-    Callback = function(value)
-        autoEgg4 = value
-        if value then
-            Egg4() -- Inicia a função de compra do ovo 4 quando o toggle é ativado
-            print("Auto Egg 4 enabled")
-        else
-            print("Auto Egg 4 disabled")
-        end
-    end
-})
-
--- Crie toggles semelhantes para outros ovos, se necessário
-
--- Toggle para ativar/desativar a compra do ovo 5
-local ToggleAutoEgg5 = AddToggle(Egg, {
-    Name = "Auto Egg 5",
-    Default = false,
-    Callback = function(value)
-        autoEgg5 = value
-        if value then
-            Egg5() -- Inicia a função de compra do ovo 5 quando o toggle é ativado
-            print("Auto Egg 5 enabled")
-        else
-            print("Auto Egg 5 disabled")
-        end
-    end
-})
-
--- Toggle para ativar/desativar a compra do ovo 6
-local ToggleAutoEgg6 = AddToggle(Egg, {
-    Name = "Auto Egg 6",
-    Default = false,
-    Callback = function(value)
-        autoEgg6 = value
-        if value then
-            Egg6() -- Inicia a função de compra do ovo 6 quando o toggle é ativado
-            print("Auto Egg 6 enabled")
-        else
-            print("Auto Egg 6 disabled")
-        end
-    end
-})
-
--- Toggle para ativar/desativar a compra do ovo 7
-local ToggleAutoEgg7 = AddToggle(Egg, {
-    Name = "Auto Egg 7",
-    Default = false,
-    Callback = function(value)
-        autoEgg7 = value
-        if value then
-            Egg7() -- Inicia a função de compra do ovo 7 quando o toggle é ativado
-            print("Auto Egg 7 enabled")
-        else
-            print("Auto Egg 7 disabled")
-        end
-    end
-})
-
--- Toggle para ativar/desativar a compra do ovo 8
-
--- Crie toggles semelhantes para os ovos restantes, se necessário
--- Toggle para ativar/desativar a compra do ovo 8
-local ToggleAutoEgg8 = AddToggle(Egg, {
-    Name = "Auto Egg 8",
-    Default = false,
-    Callback = function(value)
-        autoEgg8 = value
-        if value then
-            Egg8() -- Inicia a função de compra do ovo 8 quando o toggle é ativado
-            print("Auto Egg 8 enabled")
-        else
-            print("Auto Egg 8 disabled")
-        end
-    end
-})
-
--- Toggle para ativar/desativar a compra do ovo 9
-local ToggleAutoEgg9 = AddToggle(Egg, {
-    Name = "Auto Egg 9",
-    Default = false,
-    Callback = function(value)
-        autoEgg9 = value
-        if value then
-            Egg9() -- Inicia a função de compra do ovo 9 quando o toggle é ativado
-            print("Auto Egg 9 enabled")
-        else
-            print("Auto Egg 9 disabled")
-        end
-    end
-})
-
--- Toggle para ativar/desativar a compra do ovo 10
-local ToggleAutoEgg10 = AddToggle(Egg, {
-    Name = "Auto Egg 10",
-    Default = false,
-    Callback = function(value)
-        autoEgg10 = value
-        if value then
-            Egg10() -- Inicia a função de compra do ovo 10 quando o toggle é ativado
-            print("Auto Egg 10 enabled")
-        else
-            print("Auto Egg 10 disabled")
-        end
-    end
-})
-
--- Adicione toggles semelhantes para os ovos restantes até o Egg24
--- Função para a compra do Egg11
-local function Egg11()
-    while autoEgg11 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 11",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
-end
-
--- Função para a compra do Egg12
-local function Egg12()
-    while autoEgg12 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 12",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
-end
-
--- Crie funções semelhantes para Egg13 até Egg24, ajustando os nomes e os argumentos conforme necessário
-
--- Toggle para ativar/desativar a compra do Egg11
-local ToggleAutoEgg11 = AddToggle(Egg, {
-    Name = "Auto Egg 11",
-    Default = false,
-    Callback = function(value)
-        autoEgg11 = value
-        if value then
-            Egg11() -- Inicia a função de compra do Egg11 quando o toggle é ativado
-            print("Auto Egg 11 enabled")
-        else
-            print("Auto Egg 11 disabled")
-        end
-    end
-})
-
--- Toggle para ativar/desativar a compra do Egg12
-local ToggleAutoEgg12 = AddToggle(Egg, {
-    Name = "Auto Egg 12",
-    Default = false,
-    Callback = function(value)
-        autoEgg12 = value
-        if value then
-            Egg12() -- Inicia a função de compra do Egg12 quando o toggle é ativado
-            print("Auto Egg 12 enabled")
-        else
-            print("Auto Egg 12 disabled")
-        end
-    end
-})
-
--- Crie toggles semelhantes para Egg13 até Egg24, ajustando os nomes conforme necessário
--- Função para a compra do Egg13
-local function Egg13()
-    while autoEgg13 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 13",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
-end
-
--- Função para a compra do Egg14
-local function Egg14()
-    while autoEgg14 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 14",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
-end
-
--- Crie funções semelhantes para Egg15 até Egg24, ajustando os nomes e os argumentos conforme necessário
-
--- Toggle para ativar/desativar a compra do Egg13
-local ToggleAutoEgg13 = AddToggle(Egg, {
-    Name = "Auto Egg 13",
-    Default = false,
-    Callback = function(value)
-        autoEgg13 = value
-        if value then
-            Egg13() -- Inicia a função de compra do Egg13 quando o toggle é ativado
-            print("Auto Egg 13 enabled")
-        else
-            print("Auto Egg 13 disabled")
-        end
-    end
-})
-
--- Toggle para ativar/desativar a compra do Egg14
-local ToggleAutoEgg14 = AddToggle(Egg, {
-    Name = "Auto Egg 14",
-    Default = false,
-    Callback = function(value)
-        autoEgg14 = value
-        if value then
-            Egg14() -- Inicia a função de compra do Egg14 quando o toggle é ativado
-            print("Auto Egg 14 enabled")
-        else
-            print("Auto Egg 14 disabled")
-        end
-    end
-})
-
--- Crie toggles semelhantes para Egg15 até Egg24, ajustando os nomes conforme necessário
--- Função para a compra do Egg15
-local function Egg15()
-    while autoEgg15 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 15",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
-end
-
--- Função para a compra do Egg16
-local function Egg16()
-    while autoEgg16 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 16",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
-end
-
--- Crie funções semelhantes para Egg17 até Egg24, ajustando os nomes e os argumentos conforme necessário
-
--- Toggle para ativar/desativar a compra do Egg15
-local ToggleAutoEgg15 = AddToggle(Egg, {
-    Name = "Auto Egg 15",
-    Default = false,
-    Callback = function(value)
-        autoEgg15 = value
-        if value then
-            Egg15() -- Inicia a função de compra do Egg15 quando o toggle é ativado
-            print("Auto Egg 15 enabled")
-        else
-            print("Auto Egg 15 disabled")
-        end
-    end
-})
-
--- Toggle para ativar/desativar a compra do Egg16
-local ToggleAutoEgg16 = AddToggle(Egg, {
-    Name = "Auto Egg 16",
-    Default = false,
-    Callback = function(value)
-        autoEgg16 = value
-        if value then
-            Egg16() -- Inicia a função de compra do Egg16 quando o toggle é ativado
-            print("Auto Egg 16 enabled")
-        else
-            print("Auto Egg 16 disabled")
-        end
-    end
-})
-
-
-local ToggleAutoEgg17 = AddToggle(Egg, {
-    Name = "Auto Egg 17",
-    Default = false,
-    Callback = function(value)
-        autoEgg17 = value
-        if value then
-            Egg17()
-        end
-    end
-})
-
-local ToggleAutoEgg18 = AddToggle(Egg, {
-    Name = "Auto Egg 18",
-    Default = false,
-    Callback = function(value)
-        autoEgg18 = value
-        if value then
-            Egg18()
-        end
-    end
-})
-
-local ToggleAutoEgg19 = AddToggle(Egg, {
-    Name = "Auto Egg 19",
-    Default = false,
-    Callback = function(value)
-        autoEgg19 = value
-        if value then
-            Egg19()
-        end
-    end
-})
-
-local ToggleAutoEgg20 = AddToggle(Egg, {
-    Name = "Auto Egg 20",
-    Default = false,
-    Callback = function(value)
-        autoEgg20 = value
-        if value then
-            Egg20()
-        end
-    end
-})
-
-local ToggleAutoEgg21 = AddToggle(Egg, {
-    Name = "Auto Egg 21",
-    Default = false,
-    Callback = function(value)
-        autoEgg21 = value
-        if value then
-            Egg21()
-        end
-    end
-})
-
 local ToggleAutoEgg22 = AddToggle(Egg, {
     Name = "Auto Egg 22",
     Default = false,
     Callback = function(value)
         autoEgg22 = value
         if value then
-            Egg22()
+            spawn(Egg22)
         end
     end
 })
@@ -780,7 +157,7 @@ local ToggleAutoEgg23 = AddToggle(Egg, {
     Callback = function(value)
         autoEgg23 = value
         if value then
-            Egg23()
+            spawn(Egg23)
         end
     end
 })
@@ -791,7 +168,7 @@ local ToggleAutoEgg24 = AddToggle(Egg, {
     Callback = function(value)
         autoEgg24 = value
         if value then
-            Egg24()
+            spawn(Egg24)
         end
     end
 })
@@ -810,17 +187,16 @@ local Toggleautoclick = AddToggle(Main, {
     end
 })
 
--- Função para resetar o dropdown
+-- Function to reset the dropdown
 local function ResetDropdown()
-    Dropdown:SetValue("Select")  -- Define o valor padrão do dropdown
+    Dropdown:SetValue("Select")  -- Set the default value of the dropdown
 end
 
--- Botão para resetar o dropdown
+-- Button to reset the dropdown
 local ResetButton = AddButton(Main, {
-    Name = "Resetar Dropdown",
+    Name = "Reset Dropdown",
     Callback = ResetDropdown
 })
-
 
 -- Populate MobList initially
 List()
@@ -830,10 +206,10 @@ local Dropdown = AddDropdown(Main, {
     Options = MobList,
     Default = "Select",
     Callback = function(value)
-        while true do
+        selectedMob = value
+        while selectedMob == value do
             wait()
-            selectedMob = value
-            local selectedMobInstance = game.workspace.Live.NPCs.Client:FindFirstChild(value)
+            local selectedMobInstance = game.Workspace.Live.NPCs.Client:FindFirstChild(value)
             if selectedMobInstance and selectedMobInstance:FindFirstChild("Humanoid") and selectedMobInstance.Humanoid.Health > 0 then
                 if localPlayer.Character then
                     localPlayer.Character:SetPrimaryPartCFrame(selectedMobInstance.HumanoidRootPart.CFrame)
@@ -856,7 +232,6 @@ local Dropdown = AddDropdown(Main, {
     end
 })
 
-
 -- Ensure the GUI is updated with the current list of mobs
 local function RefreshMobList()
     List()
@@ -866,10 +241,23 @@ local function RefreshMobList()
     end
 end
 
--- Refresh the mob list periodically in case new mobs are added
+-- Periodically update the mob list
 spawn(function()
     while true do
-        wait()  -- Adjust the interval as needed
+        wait(30)  -- Adjust the interval as needed
         RefreshMobList()
     end
 end)
+
+local ToggleFarm = AddToggle(Main, {
+    Name = "Auto Farm All Mobs",
+    Default = false,
+    Callback = function(value)
+        autoMobs = value
+        if value then
+            spawn(AllMobs)
+        else
+            print("Auto Farm All Mobs disabled")
+        end
+    end
+})
