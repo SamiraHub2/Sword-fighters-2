@@ -16,6 +16,8 @@ local autoEgg23 = false
 local autoEgg24 = false
 local autoMobs = false
 local autoQuest = false
+local autoDungeon = false
+local TpDungeon = false
 
 -- Functions
 local function List()
@@ -122,6 +124,25 @@ local function Action()
             
             -- Invoca o serviço remoto de quest com os argumentos definidos
             game:GetService("ReplicatedStorage").Packages.Knit.Services.QuestService.RF.ActionQuest:InvokeServer(unpack(args))
+        end
+    end
+end
+
+local function Dungeon()
+    while autoDungeon do
+        wait()
+        local mobs = game.Workspace.Live.NPCs.Client:GetChildren()
+        if mobs then
+            for _, mob in ipairs(mobs) do
+                if mob:FindFirstChild("Humanoid") and mob.Humanoid.Health > 0 then
+                    local character = Players.LocalPlayer.Character
+                    if character and character:FindFirstChild("HumanoidRootPart") then
+                        character.HumanoidRootPart.CFrame = mob.HumanoidRootPart.CFrame
+                    else
+                        warn("Local player character or HumanoidRootPart not found.")
+                    end
+                end
+            end
         end
     end
 end
@@ -304,4 +325,33 @@ local ToggleFarm = AddToggle(Quest, {
     Name = "Auto Quest",
     Default = false,
     Callback = ToggleQuest
+})
+
+local function Teleport() 
+    while TpDungeon do 
+        wait() 
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-5870.15918, 1119.63513, -6517.26904, 1, 1.00757305e-08, -1.49841402e-13, -1.00757305e-08, 1, -7.75248594e-08, 1.49060289e-13, 7.75248594e-08, 1)
+    end
+end 
+
+local ToggleTpDungeon = AddToggle(Main, {
+    Name = "Teleport Dungeon",
+    Default = false,
+    Callback = function(value)
+        TpDungeon = value
+        if value then
+            Teleport()
+        end
+    end
+})
+
+local ToggleAutoDungeon = AddToggle(Main, {
+    Name = "Auto Dungeon",
+    Default = false,
+    Callback = function(value)
+        autoDungeon = value
+        if value then
+            Dungeon()
+        end
+    end
 })
