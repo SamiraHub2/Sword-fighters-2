@@ -1,7 +1,6 @@
--- Load the library
+
 loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/LibraryV2/main/redzLib"))()
 
--- Services
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local VirtualUser = game:GetService("VirtualUser")
@@ -330,7 +329,7 @@ local ToggleFarm = AddToggle(Quest, {
 local function Teleport() 
     while TpDungeon do 
         wait() 
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-5870.15918, 1119.63513, -6517.26904, 1, 1.00757305e-08, -1.49841402e-13, -1.00757305e-08, 1, -7.75248594e-08, 1.49060289e-13, 7.75248594e-08, 1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4121.21924, 323.23349, -6432.19434, -0.152210787, -4.37409007e-08, -0.988348067, -7.22107103e-08, 1, -3.31357484e-08, 0.988348067, 6.63256969e-08, -0.152210787) + Vector3.new(80, 0, 0)
     end
 end 
 
@@ -352,6 +351,28 @@ local ToggleAutoDungeon = AddToggle(Main, {
         autoDungeon = value
         if value then
             Dungeon()
+        end
+    end
+})
+
+local function AntiAfk()
+    local VirtualInputManager = game:GetService("VirtualInputManager")
+    
+    while autoAfk do
+        VirtualInputManager:SendKeyEvent(true, "Space", false, game)
+        wait(0.2)
+        VirtualInputManager:SendKeyEvent(false, "Space", false, game)
+        wait(300)
+    end
+end
+
+local ToggleAutoAfk = AddToggle(Main, {
+    Name = "Anti AFK",
+    Default = false,
+    Callback = function(value)
+        autoAfk = value
+        if value then
+            AntiAfk()
         end
     end
 })
