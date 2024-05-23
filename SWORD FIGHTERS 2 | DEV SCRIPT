@@ -17,6 +17,7 @@ local autoMobs = false
 local autoQuest = false
 local autoDungeon = false
 local TpDungeon = false
+local Tpwolrd = false
 
 -- Functions
 local function List()
@@ -373,6 +374,26 @@ local ToggleAutoAfk = AddToggle(Main, {
         autoAfk = value
         if value then
             AntiAfk()
+        end
+    end
+})
+
+-- Função para teleportar o jogador para o último mundo
+local function Wolrd()
+    while TpWolrd do
+        wait()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8767.36523, 161.006012, 6792.77881, 1, 5.46722418e-08, 8.17064786e-13, -5.46722418e-08, 1, 3.50154217e-08, -8.1515041e-13, -3.50154217e-08, 1)
+    end
+end
+
+-- Adiciona o toggle para teleportar o jogador para o último mundo
+local ToggleTpWolrd = AddToggle(Main, {
+    Name = "Tp ultimo mundo",
+    Default = false,
+    Callback = function(value)
+        TpWolrd = value
+        if value then
+            spawn(Wolrd)
         end
     end
 })
