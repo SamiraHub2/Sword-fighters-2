@@ -87,7 +87,7 @@ end
 
 local function AllMobs()
     while autoMobs do
-        wait()  -- Pausa o loop por um curto período para evitar processamento excessivo
+        wait(1)  -- Pausa o loop por um curto período para evitar processamento excessivo
         
         local mobs = game.Workspace.Live.NPCs.Client:GetChildren()  -- Obtém todos os NPCs na pasta designada
         if mobs then
