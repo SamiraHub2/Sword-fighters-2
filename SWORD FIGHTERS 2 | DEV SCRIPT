@@ -1,6 +1,7 @@
-
+-- Load external library
 loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/LibraryV2/main/redzLib"))()
 
+-- Services
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local VirtualUser = game:GetService("VirtualUser")
@@ -10,17 +11,14 @@ local localPlayer = Players.LocalPlayer
 local autoClick = false
 local selectedMob = ""
 local MobList = {}
-local autoEgg22 = false
-local autoEgg23 = false
-local autoEgg24 = false
 local autoMobs = false
 local autoQuest = false
-local autoDungeon = false
-local TpDungeon = false
-local Tpwolrd = false
+local TpWorld = false
+local TpWorld2 = false
+local autoAfk = false
 
 -- Functions
-local function List()
+local function listMobs()
     MobList = {}
     for _, mob in ipairs(game.Workspace.Live.NPCs.Client:GetChildren()) do 
         if mob.Name ~= "" then
@@ -29,7 +27,7 @@ local function List()
     end
 end
 
-local function Click()
+local function click()
     spawn(function()
         while autoClick do
             wait()
@@ -43,99 +41,14 @@ local function Click()
     end)
 end
 
-local function Egg22()
-    while autoEgg22 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 22",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
-end
-
-local function Egg23()
-    while autoEgg23 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 23",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
-end
-
-local function Egg24()
-    while autoEgg24 do
-        wait()
-        local args = {
-            [1] = {
-                ["eggName"] = "Egg 24",
-                ["auto"] = false,
-                ["amount"] = 2
-            }
-        }
-        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.BuyEgg:InvokeServer(unpack(args))
-    end
-end
-
-local function AllMobs()
+local function farmAllMobs()
     while autoMobs do
-        wait(5)  -- Pausa o loop por um curto período para evitar processamento excessivo
-        
-        local mobs = game.Workspace.Live.NPCs.Client:GetChildren()  -- Obtém todos os NPCs na pasta designada
-        if mobs then
-            for _, mob in ipairs(mobs) do
-                -- Verifica se o mob tem um humanoide e está vivo
-                if mob:FindFirstChild("Humanoid") and mob.Humanoid.Health > 0 then
-                    local character = localPlayer.Character
-                    if character and character:FindFirstChild("HumanoidRootPart") then
-                        -- Move o personagem do jogador para a posição do mob
-                        local humanoidRootPart = character.HumanoidRootPart
-                        humanoidRootPart.CFrame = mob.HumanoidRootPart.CFrame
-                        
-                        -- Invoca funções do servidor para interagir com o mob
-                        local args = {}  -- Certifique-se de definir 'args' com os argumentos necessários
-                        game:GetService("ReplicatedStorage").Packages.Knit.Services.ClickService.RF.Click:InvokeServer(unpack(args))
-                        game:GetService("ReplicatedStorage").Packages.Knit.Services.ItemDropService.RF.ClaimItem:InvokeServer(unpack(args))
-                    else
-                        warn("Personagem do jogador local ou HumanoidRootPart não encontrado.")
-                    end
-                end
-            end
-        end
-    end
-end
-
-local function Action()
-    while autoQuest do
-        wait()  -- Pausa o loop por um curto período para evitar processamento excessivo
-        
-        for i = 1, 22 do  -- Itera pelas áreas de 1 a 22
-            local args = {
-                [1] = "Area " .. i
-            }
-            
-            -- Invoca o serviço remoto de quest com os argumentos definidos
-            game:GetService("ReplicatedStorage").Packages.Knit.Services.QuestService.RF.ActionQuest:InvokeServer(unpack(args))
-        end
-    end
-end
-
-local function Dungeon()
-    while autoDungeon do
         wait()
         local mobs = game.Workspace.Live.NPCs.Client:GetChildren()
         if mobs then
             for _, mob in ipairs(mobs) do
                 if mob:FindFirstChild("Humanoid") and mob.Humanoid.Health > 0 then
-                    local character = Players.LocalPlayer.Character
+                    local character = localPlayer.Character
                     if character and character:FindFirstChild("HumanoidRootPart") then
                         character.HumanoidRootPart.CFrame = mob.HumanoidRootPart.CFrame
                     else
@@ -144,6 +57,29 @@ local function Dungeon()
                 end
             end
         end
+    end
+end
+
+local function completeQuests()
+    while autoQuest do
+        wait()
+        for i = 1, 22 do
+            local args = {
+                [1] = "Area " .. i
+            }
+            ReplicatedStorage.Packages.Knit.Services.QuestService.RF.ActionQuest:InvokeServer(unpack(args))
+        end
+    end
+end
+
+local function antiAfk()
+    local VirtualInputManager = game:GetService("VirtualInputManager")
+    
+    while autoAfk do
+        VirtualInputManager:SendKeyEvent(true, "Space", false, game)
+        wait(0.2)
+        VirtualInputManager:SendKeyEvent(false, "Space", false, game)
+        wait(300)
     end
 end
 
@@ -178,50 +114,17 @@ MinimizeButton({
 })
 
 local Main = MakeTab({Name = "Main"})
-local Quest = MakeTab({Name = "Quest From all the worlds "})
-local Egg = MakeTab({Name = "Eggs From All Worlds "})
-local section01 = AddSection(Main, {"By Dev | Script | Tester"})
+local Quest = MakeTab({Name = "Quest From all the worlds"})
+local Egg = MakeTab({Name = "Eggs From All Worlds"})
+AddSection(Main, {"By Dev | Script | Tester"})
 
-local ToggleAutoEgg22 = AddToggle(Egg, {
-    Name = "Auto Egg 22",
-    Default = false,
-    Callback = function(value)
-        autoEgg22 = value
-        if value then
-            spawn(Egg22)
-        end
-    end
-})
-
-local ToggleAutoEgg23 = AddToggle(Egg, {
-    Name = "Auto Egg 23",
-    Default = false,
-    Callback = function(value)
-        autoEgg23 = value
-        if value then
-            spawn(Egg23)
-        end
-    end
-})
-
-local ToggleAutoEgg24 = AddToggle(Egg, {
-    Name = "Auto Egg 24",
-    Default = false,
-    Callback = function(value)
-        autoEgg24 = value
-        if value then
-            spawn(Egg24)
-        end
-    end
-})
-
-local Toggleautoclick = AddToggle(Main, {
+AddToggle(Main, {
     Name = "Auto Click",
     Default = false,
     Callback = function(value)
         autoClick = value
         if value then
-            Click()
+            click()
             print("Auto Click enabled")
         else
             print("Auto Click disabled")
@@ -229,21 +132,9 @@ local Toggleautoclick = AddToggle(Main, {
     end
 })
 
--- Function to reset the dropdown
-local function ResetDropdown()
-    Dropdown:SetValue("Select")  -- Set the default value of the dropdown
-end
+listMobs()
 
--- Button to reset the dropdown
-local ResetButton = AddButton(Main, {
-    Name = "Reset Dropdown",
-    Callback = ResetDropdown
-})
-
--- Populate MobList initially
-List()
-
-local Dropdown = AddDropdown(Main, {
+AddDropdown(Main, {
     Name = "Select Mob",
     Options = MobList,
     Default = "Select",
@@ -255,9 +146,7 @@ local Dropdown = AddDropdown(Main, {
             if selectedMobInstance and selectedMobInstance:FindFirstChild("Humanoid") and selectedMobInstance.Humanoid.Health > 0 then
                 if localPlayer.Character then
                     localPlayer.Character:SetPrimaryPartCFrame(selectedMobInstance.HumanoidRootPart.CFrame)
-                    local args = {
-                        [1] = selectedMobInstance
-                    }
+                    local args = { [1] = selectedMobInstance }
                     local success, err = pcall(function()
                         ReplicatedStorage.Packages.Knit.Services.ClickService.RF.Click:InvokeServer(unpack(args))
                     end)
@@ -274,126 +163,71 @@ local Dropdown = AddDropdown(Main, {
     end
 })
 
--- Ensure the GUI is updated with the current list of mobs
-local function RefreshMobList()
-    List()
-    -- Update the dropdown options
-    if Dropdown.SetOptions then
-        Dropdown:SetOptions(MobList)
-    end
-end
-
--- Periodically update the mob list
-spawn(function()
-    while true do
-        wait(30)  -- Adjust the interval as needed
-        RefreshMobList()
-    end
-end)
-
-
--- Função para alternar o estado do auto farm
-local function ToggleAutoFarm(value)
-    autoMobs = value
-    if value then
-        AllMobs()
-    else
-        print("Auto Farm All Mobs disabled")
-    end
-end
-
--- Adiciona o toggle ao UI (presumindo que a função AddToggle já esteja definida)
-local ToggleFarm = AddToggle(Main, {
+AddToggle(Main, {
     Name = "Auto Farm All Mobs",
     Default = false,
-    Callback = ToggleAutoFarm
+    Callback = function(value)
+        autoMobs = value
+        if value then
+            spawn(farmAllMobs)
+        else
+            print("Auto Farm All Mobs disabled")
+        end
+    end
 })
 
-
--- Função para alternar o estado do auto quest
-local function ToggleQuest(value)
-    autoQuest = value
-    if value then
-        Action()
-    else
-        print("Auto Quest desativado")
-    end
-end
-
--- Adiciona o toggle ao UI (presumindo que a função AddToggle já esteja definida)
-local ToggleFarm = AddToggle(Quest, {
+AddToggle(Quest, {
     Name = "Auto Quest",
     Default = false,
-    Callback = ToggleQuest
-})
-
-local function Teleport() 
-    while TpDungeon do 
-        wait() 
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4121.21924, 323.23349, -6432.19434, -0.152210787, -4.37409007e-08, -0.988348067, -7.22107103e-08, 1, -3.31357484e-08, 0.988348067, 6.63256969e-08, -0.152210787) + Vector3.new(80, 0, 0)
-    end
-end 
-
-local ToggleTpDungeon = AddToggle(Main, {
-    Name = "Teleport Dungeon",
-    Default = false,
     Callback = function(value)
-        TpDungeon = value
+        autoQuest = value
         if value then
-            Teleport()
+            spawn(completeQuests)
+        else
+            print("Auto Quest disabled")
         end
     end
 })
 
-local ToggleAutoDungeon = AddToggle(Main, {
-    Name = "Auto Dungeon",
-    Default = false,
-    Callback = function(value)
-        autoDungeon = value
-        if value then
-            Dungeon()
-        end
-    end
-})
-
-local function AntiAfk()
-    local VirtualInputManager = game:GetService("VirtualInputManager")
-    
-    while autoAfk do
-        VirtualInputManager:SendKeyEvent(true, "Space", false, game)
-        wait(0.2)
-        VirtualInputManager:SendKeyEvent(false, "Space", false, game)
-        wait(300)
-    end
-end
-
-local ToggleAutoAfk = AddToggle(Main, {
+AddToggle(Main, {
     Name = "Anti AFK",
     Default = false,
     Callback = function(value)
         autoAfk = value
         if value then
-            AntiAfk()
+            spawn(antiAfk)
         end
     end
 })
 
--- Função para teleportar o jogador para o último mundo
-local function Wolrd()
-    while TpWolrd do
-        wait()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8767.36523, 161.006012, 6792.77881, 1, 5.46722418e-08, 8.17064786e-13, -5.46722418e-08, 1, 3.50154217e-08, -8.1515041e-13, -3.50154217e-08, 1)
-    end
-end
-
--- Adiciona o toggle para teleportar o jogador para o último mundo
-local ToggleTpWolrd = AddToggle(Main, {
-    Name = "Tp ultimo mundo",
+AddToggle(Main, {
+    Name = "Tp Penultimo mundo",
     Default = false,
     Callback = function(value)
-        TpWolrd = value
+        TpWorld = value
         if value then
-            spawn(Wolrd)
+            spawn(function()
+                while TpWorld do
+                    wait()
+                    localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8767.36523, 161.006012, 6792.77881)
+                end
+            end)
+        end
+    end
+})
+
+AddToggle(Main, {
+    Name = "Tp ultimo mundo (Novo)",
+    Default = false,
+    Callback = function(value)
+        TpWorld2 = value
+        if value then
+            spawn(function()
+                while TpWorld2 do
+                    wait()
+                    localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-96.8715744, 196.465454, 5238.40088)
+                end
+            end)
         end
     end
 })
